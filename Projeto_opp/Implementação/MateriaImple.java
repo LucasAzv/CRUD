@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MateriaImple implements MateriaDao {
-	// Aqui nos criamos o construtor da classe MateriaImple,
-	// que serve para inicializar a conexão com o banco de dados ao instanciar um
-	// objeto dessa classe.
-	// E fazemos o atributo privado para fazer a conexão com o banco.
+
 	private Connection connection;
 
 	public MateriaImple(Connection connection) {
@@ -21,11 +18,11 @@ public class MateriaImple implements MateriaDao {
 	public void add(Materia materia) {
 		String sql = "INSERT INTO Materia (nomeM, cargaHoraria) VALUES (?, ?)"; // Nessa String deve conter o codigo sql
 																				// para fazer a ação desejada
-		try (PreparedStatement stmt = connection.prepareStatement(sql)) { // Fazemos a conexão com o banco executamos a
-																			// ação desejada
+		try (PreparedStatement stmt = connection.prepareStatement(sql)) { 
+																			
 			stmt.setString(1, materia.getNomeM());
-			stmt.setInt(2, materia.getCargaHoraria());// Aqui adicionamos os dados da materia
-			stmt.executeUpdate(); // Aqui fazemos a atualização dos dados adicionados no banco
+			stmt.setInt(2, materia.getCargaHoraria());
+			stmt.executeUpdate(); //atualização dos dados adicionados no banco
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
